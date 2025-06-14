@@ -1,3 +1,6 @@
+`include "fullAdder.v"
+`include "fullAddSub32.v"
+
 module alu(
     input  wire        ALUSrc,       // 1: operand kedua = SignImm, 0: operand kedua = RD2
     input  wire [31:0] SrcA,         // nilai dari register pertama (A)
