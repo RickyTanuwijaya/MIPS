@@ -1,4 +1,4 @@
-`include "../alu.v"
+`include “../alu.v”
 `timescale 1ns/1ps
 module tb_alu;
 
@@ -7,7 +7,7 @@ module tb_alu;
   reg  [31:0] RD2;           // Operand B (register kedua), kecuali untuk shift
   reg  [31:0] SignImm;       // Immediate yang sudah sign‐extend (untuk ADDI)
   reg  [4:0]  sa;            // Shift‐amount (5 bit) untuk SLL/SRL
-  reg  [3:0]  ALUControl;    // Kode kontrol ALU dari Control Unit
+  reg  [3:0]  aluCtrl;    // Kode kontrol ALU dari Control Unit
 
   wire [31:0] ALUResult;     // Hasil keluaran ALU
   wire        Zero;          // Flag Zero = 1 jika result == 0
@@ -20,7 +20,7 @@ module tb_alu;
     .RD2        (RD2),
     .SignImm    (SignImm),
     .sa      (sa),
-    .ALUControl (ALUControl),
+    .aluCtrl (aluCtrl),
     .ALUResult  (ALUResult),
     .Zero       (Zero),
     .overflow   (overflow)
@@ -48,7 +48,7 @@ module tb_alu;
   // 3) Inisialisasi test‐vector (0..13)
   // --------------------------------------------------------------------------
   initial begin
-    //  0: ADD  (ALUControl=0000)
+    //  0: ADD  (aluCtrl=0000)
     tv_a[0]        = 32'd10;
     tv_b[0]        = 32'd20;
     tv_sa[0]        = 5'd0;
@@ -58,7 +58,7 @@ module tb_alu;
     tv_exp_zero[0] = 1'b0;
     tv_exp_ovf[0]  = 1'b0;      // tidak overflow
 
-    //  1: ADDU (ALUControl=0001) – unsigned wrap
+    //  1: ADDU (aluCtrl=0001) – unsigned wrap
     tv_a[1]        = 32'hFFFF_FFFF;
     tv_b[1]        = 32'd1;
     tv_sa[1]    = 5'd0;
@@ -68,7 +68,7 @@ module tb_alu;
     tv_exp_zero[1] = 1'b1;      // sum=0
     tv_exp_ovf[1]  = 1'b0;      // ADDU tidak trap overflow
 
-    //  2: SUB (ALUControl=0010)
+    //  2: SUB (aluCtrl=0010)
     tv_a[2]        = 32'd20;
     tv_b[2]        = 32'd5;
     tv_sa[2]    = 5'd0;
@@ -78,7 +78,7 @@ module tb_alu;
     tv_exp_zero[2] = 1'b0;
     tv_exp_ovf[2]  = 1'b0;      // 20-5 tidak overflow
 
-    //  3: SUBU (ALUControl=0011) – unsigned wrap
+    //  3: SUBU (aluCtrl=0011) – unsigned wrap
     tv_a[3]        = 32'd5;
     tv_b[3]        = 32'd20;
     tv_sa[3]    = 5'd0;
@@ -88,7 +88,7 @@ module tb_alu;
     tv_exp_zero[3] = 1'b0;
     tv_exp_ovf[3]  = 1'b0;      // SUBU tidak trap overflow
 
-    //  4: AND (ALUControl=0100)
+    //  4: AND (aluCtrl=0100)
     tv_a[4]        = 32'hF0F0_F0F0;
     tv_b[4]        = 32'h0FF0_0FF0;
     tv_sa[4]    = 5'd0;
@@ -98,7 +98,7 @@ module tb_alu;
     tv_exp_zero[4] = 1'b0;
     tv_exp_ovf[4]  = 1'b0;      // AND tidak menghasilkan overflow
 
-    //  5: OR (ALUControl=0101)
+    //  5: OR (aluCtrl=0101)
     tv_a[5]        = 32'hF0F0_F0F0;
     tv_b[5]        = 32'h0FF0_0FF0;
     tv_sa[5]    = 5'd0;
@@ -108,7 +108,7 @@ module tb_alu;
     tv_exp_zero[5] = 1'b0;
     tv_exp_ovf[5]  = 1'b0;      // OR tidak menghasilkan overflow
 
-    //  6: SLL (ALUControl=0110), shift register RT=tv_b[6] by sa=4
+    //  6: SLL (aluCtrl=0110), shift register RT=tv_b[6] by sa=4
     tv_a[6]        = 32'd0;      // SrcA tidak dipakai untuk shift
     tv_b[6]        = 32'd1;      // data yang di‐shift
     tv_sa[6]    = 5'd4;       // geser 4 bit
@@ -118,7 +118,7 @@ module tb_alu;
     tv_exp_zero[6] = 1'b0;
     tv_exp_ovf[6]  = 1'b0;      // shift tidak menghasilkan overflow
 
-    //  7: SRL (ALUControl=0111), shift register RT=tv_b[7] by sa=31
+    //  7: SRL (aluCtrl=0111), shift register RT=tv_b[7] by sa=31
     tv_a[7]        = 32'd0;      
     tv_b[7]        = 32'h8000_0000; 
     tv_sa[7]    = 5'd31;       
@@ -128,7 +128,7 @@ module tb_alu;
     tv_exp_zero[7] = 1'b0;
     tv_exp_ovf[7]  = 1'b0;      // shift tidak menghasilkan overflow
 
-    //  8: SLT (ALUControl=1000), signed compare (3 < 5 → 1)
+    //  8: SLT (aluCtrl=1000), signed compare (3 < 5 → 1)
     tv_a[8]        = 32'd3;
     tv_b[8]        = 32'd5;
     tv_sa[8]    = 5'd0;
@@ -138,7 +138,7 @@ module tb_alu;
     tv_exp_zero[8] = 1'b0;
     tv_exp_ovf[8]  = 1'b0;      // compare tidak menghasilkan overflow
 
-    //  9: BEQ (ALUControl=1001), cek Zero: 7 == 7 → Zero=1
+    //  9: BEQ (aluCtrl=1001), cek Zero: 7 == 7 → Zero=1
     tv_a[9]        = 32'd7;
     tv_b[9]        = 32'd7;
     tv_sa[9]    = 5'd0;
@@ -148,7 +148,7 @@ module tb_alu;
     tv_exp_zero[9] = 1'b1;      // Zero=1
     tv_exp_ovf[9]  = 1'b0;      // SUB hasil 0 tidak overflow
 
-    // 10: BNE (ALUControl=1010), cek Zero: 7 != 8 → Zero=0
+    // 10: BNE (aluCtrl=1010), cek Zero: 7 != 8 → Zero=0
     tv_a[10]       = 32'd7;
     tv_b[10]       = 32'd8;
     tv_sa[10]   = 5'd0;
@@ -158,7 +158,7 @@ module tb_alu;
     tv_exp_zero[10]= 1'b0;      // Zero=0
     tv_exp_ovf[10] = 1'b0;      // SUB -1 tidak overflow
 
-    // 11: ADDI (ALUControl=0000 dengan ALUSrc=1)
+    // 11: ADDI (aluCtrl=0000 dengan ALUSrc=1)
     tv_a[11]       = 32'd10;
     tv_b[11]       = 32'd5;      // SignImm = 5
     tv_sa[11]   = 5'd0;
@@ -213,7 +213,7 @@ module tb_alu;
         RD2       = 32'bx;   // x karena tidak dipakai
         SignImm   = tv_b[i];
       end
-      ALUControl = tv_ctrl[i];
+      aluCtrl = tv_ctrl[i];
 
       #1; // tunggu 1 ns agar sinyal kombinasi stabil
 
@@ -230,20 +230,20 @@ module tb_alu;
       else begin
         // Instr lain: cek ALUResult
         if (ALUResult !== tv_exp_res[i]) begin
-          $display("GAGAL #%0d: ALUControl=%b, SrcA=%h, SrcB/Imm=%h → ALUResult=%h, diharapkan=%h",
-                   i, ALUControl, tv_a[i], tv_b[i], ALUResult, tv_exp_res[i]);
+          $display("GAGAL #%0d: aluCtrl=%b, SrcA=%h, SrcB/Imm=%h → ALUResult=%h, diharapkan=%h",
+                   i, aluCtrl, tv_a[i], tv_b[i], ALUResult, tv_exp_res[i]);
         end
         else if (Zero !== tv_exp_zero[i]) begin
-          $display("GAGAL #%0d: ALUControl=%b, Zero=%b, diharapkan=%b",
-                   i, ALUControl, Zero, tv_exp_zero[i]);
+          $display("GAGAL #%0d: aluCtrl=%b, Zero=%b, diharapkan=%b",
+                   i, aluCtrl, Zero, tv_exp_zero[i]);
         end
         else if (overflow !== tv_exp_ovf[i]) begin
-          $display("GAGAL #%0d: ALUControl=%b, Overflow=%b, diharapkan=%b",
-                   i, ALUControl, overflow, tv_exp_ovf[i]);
+          $display("GAGAL #%0d: aluCtrl=%b, Overflow=%b, diharapkan=%b",
+                   i, aluCtrl, overflow, tv_exp_ovf[i]);
         end
         else begin
-          $display("SUKSES #%0d: ALUControl=%b, ALUResult=%h, Zero=%b, Overflow=%b",
-                   i, ALUControl, ALUResult, Zero, overflow);
+          $display("SUKSES #%0d: aluCtrl=%b, ALUResult=%h, Zero=%b, Overflow=%b",
+                   i, aluCtrl, ALUResult, Zero, overflow);
         end
       end
     end
@@ -252,4 +252,3 @@ module tb_alu;
     $finish;
   end
 endmodule
-
