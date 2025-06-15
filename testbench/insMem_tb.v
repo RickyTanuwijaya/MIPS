@@ -1,12 +1,11 @@
 `include "../insMem.v"
-
 module imem_test;
 
     reg [31:0] PC;
     wire [31:0] Instr;
 
     InstructionMemory uut (
-        .A(PC),
+        .PC(PC),
         .RD(Instr)
     );
 
@@ -43,5 +42,7 @@ module imem_test;
         $display("=== Test Complete ===");
         $finish;
     end
+endmodule
+
 endmodule
 
