@@ -4,7 +4,6 @@ module InstructionMemory (
 );
     reg [31:0] memory [0:255]; // Memori 256 word (32-bit)
     parameter IM_DATA = "im.mips";
-    parameter NMEM = 15;
 
     // Word-aligned access: ambil word ke-n dari PC
     assign RD = memory[PC[9:2]];
