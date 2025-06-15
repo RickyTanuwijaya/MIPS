@@ -1,14 +1,18 @@
 module InstructionMemory (
-    input  [31:0] A,        // Disamakan dengan nama sinyal dari testbench (A = PC)
+    input  [31:0] PC,       // Alamat instruksi (Program Counter)
     output [31:0] RD        // Instruksi keluar
 );
-    reg [31:0] memory [0:255]; // 256 word (32-bit)
+    reg [31:0] memory [0:255]; // Memori 256 word (32-bit)
+    parameter IM_DATA = "im.mips";
+    parameter NMEM = 15;
 
-    // Word-aligned access: PC[9:2] karena 2^8 = 256 word, dan 32-bit (4 byte)
-    assign RD = memory[A[9:2]];
+    // Word-aligned access: ambil word ke-n dari PC
+    assign RD = memory[PC[9:2]];
 
-    // Load instruksi dari file eksternal (im.mips)
+    // Load instruksi dari file eksternal (.mips file)
     initial begin
-        $readmemh("im.mips", memory); // Format file hex
+        $readmemh(IM_DATA, memory); // Format HEX
+        // $readmemb(IM_DATA, memory); // Format BIN (jika perlu)
     end
+
 endmodule
