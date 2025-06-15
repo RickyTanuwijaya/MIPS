@@ -3,10 +3,7 @@
 Proyek ini mensimulasikan MIPS menggunakan bahasa verilog dengan referensi 
 
 Lihat Rangkuman Arsitektur Prosesor MIPS https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing
-
-## 📦 Dependencies
-- Icarus Verilog (`iverilog`, `vvp`)
-- GTKWave
+![Diagram MIPS](images/MIPS_diagram.jpg)
 
 # Daftar Pembuat
 | Nama                        | NIM                |  
@@ -19,6 +16,10 @@ Lihat Rangkuman Arsitektur Prosesor MIPS https://docs.google.com/document/d/1pAX
 | Muhammmad Shafa Adhitiya    | 22/496402/TK/54378 |
 | Ricky Tanuwijaya            | 21/477506/TK/52592 |
 | Shofi Na'ila Haniefah       | 22/502927/TK/54923 |
+
+## 📦 Dependencies
+- Icarus Verilog (`iverilog`, `vvp`)
+- GTKWave
 
 ## 🖥️ Cara Menjalankan
 1. pastikan anda punya Icarus Verilog ter-install di komputer anda
