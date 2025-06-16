@@ -32,11 +32,13 @@ Proyek ini mensimulasikan **MIPS** menggunakan bahasa _verilog_ dengan referensi
 - `iverilog -o dataMem_tb dataMem.v`
 - `iverilog -o insMem_tb insMem.v`
 - `iverilog -o regsFile_tb regsFile_tb.v`
+- `iverilog -I.. -o cpu_tb cpu_tb.v`
 5. lalu lakukan testbench 1 per 1 dengan run perintah berikut:
 - `vvp alu_tb`
 - `vvp control_tb`
 - `vvp dataMem_tb`
 - `vvp insMem_tb`
 - `vvp regsFile_tb`
+- `vvp cpu_tb`
 6. ✅ pastikan semua testbench berjalan dengan benar sesuai testbench pada [Rangkuman Arsitektur Prosesor MIPS](https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing)
 7. ✅ file siap digunakan
