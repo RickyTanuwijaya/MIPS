@@ -1,8 +1,8 @@
-`include "alu.v"
-`include "insMem.v"
-`include "regsFile.v"
-`include "dataMem.v"
-`include "control.v"
+`include "./alu.v"
+`include "./insMem.v"
+`include "./regsFile.v"
+`include "./dataMem.v"
+`include "./control.v"
 `timescale 1ns / 1ps
 
 module cpu(
