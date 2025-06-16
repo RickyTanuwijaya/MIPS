@@ -17,6 +17,7 @@ Proyek ini mensimulasikan **MIPS** menggunakan bahasa _verilog_ dengan referensi
 | Muhammmad Shafa Adhitiya    | 22/496402/TK/54378 |
 | Ricky Tanuwijaya            | 21/477506/TK/52592 |
 | Shofi Na'ila Haniefah       | 22/502927/TK/54923 |
+dengan pembimbing Ir. Addin Suwastono, S.T., M.Eng., IPM.
 
 ## 📦 Dependencies
 - [Icarus Verilog](http://iverilog.icarus.com/) (`iverilog`, `vvp`)
