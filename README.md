@@ -1,11 +1,12 @@
 # Microprocessor without Interlocked Pipeline Stages (MIPS)
 
-Proyek ini mensimulasikan MIPS menggunakan bahasa verilog dengan referensi 
+Proyek ini mensimulasikan MIPS menggunakan bahasa verilog dengan referensi Digital Design and Computer Architecture 2nd Edition oleh David Money Harris, and Sarah L. Harris
 
-Lihat Rangkuman Arsitektur Prosesor MIPS https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing
+[Rangkuman Arsitektur Prosesor MIPS]
+https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing
 ![Diagram MIPS](images/MIPS_diagram.jpg)
 
-# Daftar Pembuat
+## Daftar Pembuat
 | Nama                        | NIM                |  
 |-----------------------------|--------------------|
 | Achmad Muhajir              | 22/500339/TK/54838 |
@@ -19,16 +20,24 @@ Lihat Rangkuman Arsitektur Prosesor MIPS https://docs.google.com/document/d/1pAX
 
 ## 📦 Dependencies
 - Icarus Verilog (`iverilog`, `vvp`)
-- GTKWave
+- GTKWave (ini opsional)
 
 ## 🖥️ Cara Menjalankan
 1. pastikan anda punya Icarus Verilog ter-install di komputer anda
 2. download semua file dari github ini, lalu unzip
 3. buka folder 📁 testbench (./MIPS/testbench)
-4. klik kanan lalu, run cmd atau terminal (atau buka cmd/terminal lalu, masukan perintah ini: cd ./MIPS/testbench)
+4. klik kanan lalu, run cmd atau terminal (atau buka cmd/terminal lalu, masukan perintah ini: `cd ./MIPS/testbench`)
 5. masukkan list perintah sebagai berikut untuk generate file testbench:
-
-6. lalu lakukan testbench 1 per 1 dengan perintah berikut:
-
-7. pastikan semua testbench berjalan dengan benar
-8. file siap digunakan
+- `iverilog -I.. -o alu_tb alu_tb.v`
+- `iverilog -o control_tb control_tb.v`
+- `iverilog -o dataMem_tb dataMem.v`
+- `iverilog -o insMem_tb insMem.v`
+- `iverilog -o regsFile_tb regsFile_tb.v`
+7. lalu lakukan testbench 1 per 1 dengan run perintah berikut:
+- `vvp alu_tb`
+- `vvp control_tb`
+- `vvp dataMem_tb`
+- `vvp insMem_tb`
+- `vvp regsFile_tb`
+8. pastikan semua testbench berjalan dengan benar sesuai Rangkuman Arsitektur Prosesor MIPS
+9. file siap digunakan
