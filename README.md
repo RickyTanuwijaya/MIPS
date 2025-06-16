@@ -4,7 +4,7 @@
 
 Proyek ini mensimulasikan **MIPS** menggunakan bahasa _verilog_ dengan referensi _Digital Design and Computer Architecture 2nd Edition_ oleh **David Money Harris** and **Sarah L. Harris**
 
-## **🔗 [Rangkuman Arsitektur Prosesor MIPS](https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing)**
+## **🔗 Lihat [Rangkuman Arsitektur Prosesor MIPS](https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing) untuk detail dokumentasi**
 
 ## 🛠️ Daftar Pembuat
 | Nama                        | NIM                |  
