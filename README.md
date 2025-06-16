@@ -1,6 +1,6 @@
 # Microprocessor without Interlocked Pipeline Stages (MIPS)
 
-![Diagram MIPS](images/MIPS_diagram.png)
+![Diagram MIPS](images/MIPS_Diagram.png)
 
 Proyek ini mensimulasikan **MIPS** menggunakan bahasa _verilog_ dengan referensi _Digital Design and Computer Architecture 2nd Edition_ oleh **David Money Harris** and **Sarah L. Harris**
 
