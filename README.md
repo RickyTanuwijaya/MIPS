@@ -6,7 +6,7 @@ Proyek ini mensimulasikan MIPS menggunakan bahasa verilog dengan referensi Digit
 https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing
 ![Diagram MIPS](images/MIPS_diagram.jpg)
 
-## Daftar Pembuat
+## 🛠️ Daftar Pembuat
 | Nama                        | NIM                |  
 |-----------------------------|--------------------|
 | Achmad Muhajir              | 22/500339/TK/54838 |
@@ -22,12 +22,12 @@ https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/
 - Icarus Verilog (`iverilog`, `vvp`)
 - GTKWave (ini opsional)
 
-## 🖥️ Cara Menjalankan
+## 📘 User Manual
 1. pastikan anda punya Icarus Verilog ter-install di komputer 💻 anda
-2. download 📥 semua file 📄 dari github ini, lalu unzip 🧩
+2. download 📥 semua file 📄 dari github ini, lalu unzip 📚
 3. buka folder 📁 testbench (./MIPS/testbench)
-4. klik kanan lalu, run cmd atau terminal (atau buka cmd/terminal lalu, masukan perintah ini: `cd ./MIPS/testbench`)
-5. masukkan list perintah sebagai berikut untuk generate file testbench:
+4. klik kanan lalu, run cmd atau terminal 💻 (atau buka cmd/terminal lalu, masukan perintah ini: `cd ./MIPS/testbench`)
+5. masukkan list perintah ⌨️ sebagai berikut untuk generate file testbench:
 - `iverilog -I.. -o alu_tb alu_tb.v`
 - `iverilog -o control_tb control_tb.v`
 - `iverilog -o dataMem_tb dataMem.v`
