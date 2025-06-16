@@ -19,13 +19,11 @@ module simple_cpu_tb;
 
   reg [31:0] pc;
 
-  // Instantiate instruction memory
   InstructionMemory imem (
     .PC(pc),
     .RD(fetchedInstruction)
   );
 
-  // Instantiate register file
   wire [31:0] WD3;
   reg[31:0] tempWD3;
   regsFile rf (
@@ -38,7 +36,6 @@ module simple_cpu_tb;
     .RD2(rd2)
   );
 
-  // Instantiate ALU
   wire [31:0] srcB;
   assign srcB = (aluSrc) ? immediate : rd2;
 
@@ -108,7 +105,7 @@ module simple_cpu_tb;
 
       case (opcode)
         6'b001000: begin // ADDI
-          aluCtrl = 4'b0010;
+          aluCtrl = 4'b0000;
           aluSrc = 1;
           A3 = rt;
           WE3 = 1;
@@ -119,7 +116,7 @@ module simple_cpu_tb;
         6'b000000: begin // R-type
           case (funct)
             6'b100000: begin // ADD
-              aluCtrl = 4'b0010;
+              aluCtrl = 4'b0000;
               aluSrc = 0;
               A3 = rd;
               WE3 = 1;
@@ -128,7 +125,7 @@ module simple_cpu_tb;
               WE3 = 0;
             end
             6'b100010: begin // SUB
-              aluCtrl = 4'b0110;
+              aluCtrl = 4'b0010;
               aluSrc = 0;
               A3 = rd;
               WE3 = 1;
