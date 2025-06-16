@@ -42,3 +42,7 @@ Proyek ini mensimulasikan **MIPS** menggunakan bahasa _verilog_ dengan referensi
 - `vvp cpu_tb`
 6. ✅ pastikan semua testbench berjalan dengan benar sesuai testbench pada [Rangkuman Arsitektur Prosesor MIPS](https://docs.google.com/document/d/1pAXqmZG_dCCwxrkT2Vopft7MBVUdl0mRUUSVTXJz1RQ/edit?usp=sharing)
 7. ✅ file siap digunakan
+
+## 📌 To Do List
+- Memperbaiki modul cpu.v
+- Memperbaiki cpu_tb.v
